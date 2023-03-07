@@ -1,0 +1,702 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500&display=swap');
+
+*{
+   font-family: 'Nunito', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; border:none;
+   text-decoration: none;
+   transition: all .2s linear;
+}
+
+$blue:#0097e6;
+$black:#000;
+$white:#fff;
+$light-color:#aaa;
+$light-bg:#0a0a0a;
+$border:.1rem solid rgba(255,255,255,.2);
+
+@mixin title-text($titleVal) {
+   font-size: $titleVal;
+   color:$white;
+   text-transform: capitalize;
+}
+
+@mixin graph-text($graphVal) {
+   font-size: $graphVal;
+   color:$light-color;
+   line-height: 2;
+   padding:1.5rem 0;
+}
+
+@mixin grid($val) {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+   gap:2rem;
+}
+
+html{
+   font-size: 62.5%;
+   overflow-x: hidden;
+   scroll-behavior: smooth;
+   scroll-padding-top: 8rem;
+
+   &::-webkit-scrollbar{
+      width: 1rem;
+   }
+
+   &::-webkit-scrollbar-track{
+      background: $black;
+   }
+
+   &::-webkit-scrollbar-thumb{
+      background: $blue;
+   }
+}
+
+body{
+   overflow-x: hidden;
+   background: $black;
+}
+
+section{
+   padding:3rem 9%;
+}
+
+.btn{
+   display: inline-block;
+   margin-top: 1rem;
+   padding:1rem 3rem;
+   background:$blue;
+   color:$white;
+   cursor: pointer;
+   font-size: 1.8rem;
+
+   &:hover{
+      background: $white;
+      color:$black;
+   }
+}
+
+.heading{
+   text-align: center;
+   padding-bottom: 3rem;
+   @include title-text(3rem);
+   text-transform: uppercase;
+
+   span{
+      color:$blue;
+      text-transform: uppercase;
+   }
+}
+
+.header{
+   position: fixed;
+   top:0; left:0; right:0;
+   z-index: 1000;
+   background: $black;
+   padding:1.5rem 9%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   border-bottom: $border;
+   transform: translateY(-20rem);
+
+   &.active{
+      transform: translateY(0rem);
+   }
+
+   .logo{
+      @include title-text(2.5rem);
+   }
+
+   .navbar{
+      a{
+         @include title-text(2rem);
+         margin:0 1.5rem;
+
+         &:hover{
+            color:$blue;
+         }
+      }
+   }
+
+   .icons div,
+   .icons a{
+      height: 4.5rem;
+      width: 4.5rem;
+      line-height: 4.5rem;
+      font-size: 2rem;
+      background: $white;
+      color:$black;
+      margin-left: .5rem;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover{
+         background: $blue;
+         color:$white;
+      }
+   }
+
+   #menu-btn{
+      display: none;
+   }
+
+   .search-form{
+      position: absolute;
+      top:99%; left:0; right:0;
+      background: $black;
+      display: flex;
+      align-items: center;
+      padding:0 9%;
+      border-top: $border;
+      border-bottom: $border;
+      height: 6rem;
+      gap:1rem;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+
+      &.active{
+         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      input{
+         width: 100%;
+         background: none;
+         color:$white;
+         font-size: 1.8rem;
+      }
+
+      label{
+         font-size: 2.5rem;
+         cursor: pointer;
+         color:$white;
+
+         &:hover{
+            color:$blue;
+         }
+      }
+   }
+}
+
+.home{
+   position: relative;
+   overflow: hidden;
+   height: 100vh;
+   background: url(../images/home-bg.jpg) no-repeat;
+   background-size: cover;
+   background-position: center;
+   background-attachment: fixed;
+
+   .tree{
+      position: absolute;
+      bottom: 0; left:0;
+      height: 20rem;
+      width: 100%;
+      object-fit: cover;
+      z-index: 10;
+   }
+
+   .mountain{
+      position: absolute;
+      bottom: 0; left:0;
+      height: 40rem;
+      width: 100%;
+      object-fit: cover;
+      z-index: 5;
+   }
+
+   .moon{
+      position: absolute;
+      top:20rem; left:50%; 
+      transform: translateX(-50%);
+      width: 30vw;
+      z-index: 1;
+   }
+
+   .cloud-1{
+      position: absolute;
+      top:5rem; right:0;
+      width: 60vw;
+      z-index: 2;
+   }
+
+   .cloud-2{
+      position: absolute;
+      top:20rem; left:0;
+      width: 60vw;
+   }
+
+   .content{
+      position: absolute;
+      bottom:0; left:50%; 
+      transform: translateX(-50%);
+      width: 100%;
+      text-align: center;
+      z-index: 3;
+
+      p{
+         @include title-text(3rem);
+         text-transform: uppercase;
+         text-shadow: 0 .5rem 1rem rgba(0,0,0,.7);
+      }
+
+      h3{
+         @include title-text(10rem);
+         text-transform: uppercase;
+         text-shadow: 0 .5rem 1rem rgba(0,0,0,.7);
+      }
+   }
+
+   &::before{
+      content: '';
+      position: absolute;
+      bottom:0; left:0;
+      width: 100%;
+      height: 5rem;
+      background:linear-gradient(transparent, $black);
+      z-index: 12;
+   }
+}
+
+.about{
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   gap:3rem;
+
+   .image{
+      flex:1 1 42rem;
+
+      img{
+         width: 100%;
+      }
+   }
+
+   .content{
+      flex:1 1 42rem;
+
+      span{
+         font-size: 2rem;
+         color:$blue;
+      }
+
+      h3{
+         @include title-text(3.5rem);
+         padding-top: 1.5rem;
+      }
+
+      p{
+         @include graph-text(1.6rem);
+      }
+   }
+}
+
+.products{
+
+   .box-container{
+      @include grid(31rem);
+
+      .box{
+         text-align: center;
+         
+         &:hover .image{
+
+            img{
+               transform: scale(1.1);
+            }
+
+            .icons{
+               transform: translateY(0);
+            }
+         }
+
+         .image{
+            height: 30rem;
+            position: relative;
+            overflow: hidden;
+
+            img{
+               height: 100%;
+            }
+
+            .icons{
+               position: absolute;
+               top:0; left:0;
+               height: 100%;
+               width: 100%;
+               background: rgba(0,0,0,.7);
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               gap:.5rem;
+               transform: translateY(-100%);
+
+               a{
+                  height: 5rem;
+                  width: 5rem;
+                  line-height: 5rem;
+                  font-size:2rem;
+                  background: $white;
+                  color:$black;
+
+                  &:hover{
+                     background: $blue;
+                     color:$white;
+                  }
+               }
+            }
+         }
+
+         .content{
+            padding:1.5rem 0;
+
+            .stars{
+               padding-bottom: .5rem;
+
+               i{
+                  font-size: 1.7rem;
+                  color:$blue;
+               }
+            }
+
+            h3{
+               padding:1rem 0;
+               @include title-text(2rem);
+            }
+
+            .price{
+               font-size: 2rem;
+               color:$white;
+
+               span{
+                  color:$light-color;
+                  font-size: 1.5rem;
+                  text-decoration: line-through;
+               }
+            }
+         }
+      }
+   }
+}
+
+.services{
+
+   .box-container{
+      @include grid(31rem);
+
+      .box{
+         text-align: center;
+         padding:3rem;
+
+         &:nth-child(even){
+            background: $light-bg;
+            border-radius: .5rem;
+         }
+
+         &:hover i{
+            transform: translateY(-1rem);
+         }
+
+         i{
+            height: 6rem;
+            width: 6rem;
+            line-height: 6rem;
+            border-radius: 50%;
+            font-size: 2rem;
+            color:$white;
+            background: $blue;
+            margin-bottom: 1.5rem;
+         }
+
+         h3{
+            @include title-text(2rem);
+         }
+
+         p{
+            @include graph-text(1.6rem);
+            padding-bottom: 0;
+         }
+      }
+   }
+}
+
+.gallery{
+
+   .box-container{
+      columns:25rem 3;
+      gap:1.5rem;
+
+      img{
+         width: 100%;
+         border-radius: .5rem;
+         margin-bottom: 1.5rem;
+      }
+   }
+}
+
+.contact{
+
+   form{
+      margin:1rem auto;
+      max-width: 60rem;
+      text-align: center;
+
+      h3{
+         @include title-text(3rem);
+         margin-bottom: 1rem;
+      }
+
+      .box{
+         width: 100%;
+         padding:1.5rem 0;
+         border-bottom: $border;
+         margin-bottom: 1rem;
+         color:$white;
+         font-size: 1.8rem;
+         background: none;
+
+         &:focus{
+            border-color: $blue;
+         }
+      }
+
+      textarea{
+         height: 15rem;
+         resize: none;
+      }
+   }
+}
+
+.blogs{
+
+   .box-container{
+      @include grid(31rem);
+
+      .box{
+         text-align: center;
+
+         &:hover{
+            .images img{
+               transform: scale(1.1);
+            }
+         }
+
+         .images{
+            height: 30rem;
+            overflow: hidden;
+
+            img{
+               height: 100%;
+               width: 100%;
+               object-fit: cover;
+            }
+         }
+
+         .content{
+            padding-top: 2rem;
+
+            h3{
+               @include title-text(2rem);
+            }
+
+            p{
+               @include graph-text(1.6rem);
+               padding:1rem 2rem;
+            }
+
+            .icons{
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               padding:2rem;
+               background-color: $light-bg;
+               margin-top: 2rem;
+
+               a{
+                  font-size: 1.6rem;
+                  color:$white;
+
+                  i{
+                     color:$blue;
+                     padding-right: .5rem;
+                  }
+
+                  &:hover{
+                     color:$blue;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+.footer{
+   background-color: $light-bg;
+
+   .box-container{
+      @include grid(25rem);
+
+      .box{
+
+         h3{
+            @include title-text(2.2rem);
+            padding-bottom: 2rem;
+            padding-top: 1rem;
+         }
+
+         .link{
+            display: block;
+            color:$light-color;
+            padding:1rem 0;
+            font-size: 1.5rem;
+
+            i{
+               color:$blue;
+               padding-right: .5rem;
+            }
+
+            &:hover{
+               color:$blue;
+
+               i{
+                  padding-right: 2rem;
+               }
+            }
+         }
+
+         .email{
+            width: 100%;
+            padding:1.2rem 1.4rem;
+            border:$border;
+            color:$white;
+            margin:1rem 0;
+            background: none;
+            font-size: 1.6rem;
+         }
+
+         .share{
+            margin-top: 2rem;
+
+            a{
+               height: 4.5rem;
+               width: 4.5rem;
+               line-height: 4.5rem;
+               font-size: 2rem;
+               background-color: $white;
+               color:$black;
+               margin-right: .5rem;
+               text-align: center;
+
+               &:hover{
+                  background-color: $blue;
+                  color:$white;
+               }
+            }
+         }
+      }
+   }
+
+   .credit{
+      text-align: center;
+      @include title-text(2rem);
+      padding-top: 2rem;
+      margin-top: 3rem;
+      border-top: $border;
+
+      span{
+         color:$blue;
+      }
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// media queries 
+
+@media (max-width:1200px){
+
+   .header{
+      padding:1.5rem 2rem;
+   }
+
+   section{
+      padding:3rem 2rem;
+   }
+
+}
+
+@media (max-width:991px){
+
+   html{
+      font-size: 55%;
+   }
+
+   .header{
+
+      #menu-btn{
+         display: inline-block;
+      }
+
+      .navbar{
+         position: absolute;
+         top:99%; left:0; right:0;
+         background: $black;
+         border-top: $border;
+         border-bottom: $border;
+         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+
+         &.active{
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+         }
+
+         a{
+            display: block;
+            margin:2rem;
+         }
+      }
+   }
+
+   .home{
+
+      .cloud-1{
+         top:10%;
+      }
+
+      .moon{
+         width: 20rem;
+         z-index: 0;
+      }
+
+      .content{
+
+         p{
+            font-size: 2rem;
+         }
+
+         h3{
+            font-size: 3rem;
+         }
+      }
+   }
+
+}
+
+@media (max-width:450px){
+
+   html{
+      font-size: 50%;
+   }
+
+}
